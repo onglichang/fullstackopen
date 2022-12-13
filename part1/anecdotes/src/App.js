@@ -15,6 +15,7 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [voteArr, setVoteArr] = useState(new Uint8Array(anecdotes.length))
+  const [mostVotes, setMostVotes] = useState(0)
 
   const generateAnecdote = () => {
     const num = Math.floor(Math.random() * anecdotes.length)
@@ -24,17 +25,26 @@ const App = () => {
   const voteForQuote = () => {
     const tempArr = [...voteArr]
     tempArr[selected] += 1
-    setVoteArr(tempArr) 
+    setVoteArr(tempArr)
+    const maxIndex = tempArr.indexOf(Math.max(...tempArr))
+    setMostVotes(maxIndex)
   }
 
   return (
-    <div>
-      <h1>quote of the day</h1>
-      <p>{anecdotes[selected]}</p>
-      <p>has {voteArr[selected]} votes</p>
-      <Button handleClick={voteForQuote} text="vote" />
-      <Button handleClick={generateAnecdote} text="next anecdote" />
-    </div>
+    <>
+      <div>
+        <h1>quote of the day</h1>
+        <p>{anecdotes[selected]}</p>
+        <p>has {voteArr[selected]} votes</p>
+        <Button handleClick={voteForQuote} text="vote" />
+        <Button handleClick={generateAnecdote} text="next anecdote" />
+      </div>
+      <div>
+        <h1>Anecdote with most votes</h1>
+        <p>{anecdotes[mostVotes]}</p>
+        <p>has {voteArr[mostVotes]} votes</p>
+      </div>
+    </>
   )
 }
 
