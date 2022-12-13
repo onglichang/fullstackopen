@@ -14,17 +14,26 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [voteArr, setVoteArr] = useState(new Uint8Array(anecdotes.length))
 
   const generateAnecdote = () => {
     const num = Math.floor(Math.random() * anecdotes.length)
     setSelected(num)
   }
 
+  const voteForQuote = () => {
+    const tempArr = [...voteArr]
+    tempArr[selected] += 1
+    setVoteArr(tempArr) 
+  }
+
   return (
     <div>
       <h1>quote of the day</h1>
       <p>{anecdotes[selected]}</p>
-      <Button handleClick={generateAnecdote} text="Generate a new quote" />
+      <p>has {voteArr[selected]} votes</p>
+      <Button handleClick={voteForQuote} text="vote" />
+      <Button handleClick={generateAnecdote} text="next anecdote" />
     </div>
   )
 }
