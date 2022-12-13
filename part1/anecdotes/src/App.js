@@ -33,7 +33,7 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>quote of the day</h1>
+        <h1>Anecdote of the day</h1>
         <p>{anecdotes[selected]}</p>
         <p>has {voteArr[selected]} votes</p>
         <Button handleClick={voteForQuote} text="vote" />
