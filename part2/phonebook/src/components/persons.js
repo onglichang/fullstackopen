@@ -1,4 +1,4 @@
-const Persons = ({personsToShow}) => {
+const Persons = ({ personsToShow }) => {
     return (
         <div>
             {personsToShow.map(person =>

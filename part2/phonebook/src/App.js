@@ -53,7 +53,7 @@ const App = () => {
       numberChange={handleNumberChange} 
       />
       <h2>Numbers</h2>
-      <Persons personsToShow={personsToShow} />
+      <Persons personsToShow={personsToShow}/>
     </div>
   )
 }
