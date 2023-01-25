@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Filter from './components/filter'
-import Country from './components/country'
 import Information from './components/information'
 
 const App = () => {
@@ -14,6 +13,7 @@ const App = () => {
       .get("https://restcountries.com/v3.1/all")
       .then(response => {
         setAllCountries(response.data)
+        console.log("promise fulfilled")
       })
   }, [])
 
@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div>
       <Filter filter={filter} eventHandler={handleFilterChange}/>
-      <Information countries={countries} />
+      <Information countries={countries} setCountries={setCountries}/>
     </div>
   )
 }

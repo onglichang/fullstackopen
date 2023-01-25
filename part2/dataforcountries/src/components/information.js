@@ -1,6 +1,6 @@
 import Country from './country'
 
-const Information = ({countries}) => {
+const Information = ({countries, setCountries}) => {
     if (!countries) {
         return null
     }
@@ -10,8 +10,14 @@ const Information = ({countries}) => {
     } else if (countries.length > 10) {
         return <div>Too many matches, specify another filter</div>
     } else {
-        return countries.map((country) => (
-        <div key={country.name.official}>{country.name.common}{" "}</div>))
+        return countries.map((country) => 
+            (
+                <div key={country.name.official}>
+                    {country.name.common}{" "}
+                    <button onClick={() => setCountries([country])}>show</button>
+                </div>
+            )
+        )
     }
 }
 
