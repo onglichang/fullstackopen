@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Filter from './components/filter'
 import Country from './components/country'
+import Information from './components/information'
 
 const App = () => {
   const [filter, setFilter] = useState('')
@@ -19,27 +20,21 @@ const App = () => {
   const handleFilterChange = (event) => {
     const filterChars = event.target.value
     setFilter(filterChars)
-    setCountries(
-      allCountries.filter((country) =>
-        country.name.common.toLowerCase().includes(filterChars.toLowerCase())
+    if (filterChars) {
+      setCountries(
+        allCountries.filter((country) =>
+          country.name.common.toLowerCase().includes(filterChars.toLowerCase())
+        )
       )
-    )
+    } else {
+      setCountries([])
+    }
   }
 
   return (
     <div>
       <Filter filter={filter} eventHandler={handleFilterChange}/>
-      {countries.length > 10 ? 
-      (<div>Too many matches, specify another filter</div>) :
-      null} 
-      {countries.length > 1 && countries.length < 10 ? 
-      countries.map((country) => (
-        <div key={country.name.official}>{country.name.common}{" "}</div>
-        )) :
-      null} 
-      {countries.length === 1 ? 
-      <Country country={countries[0]}></Country> :
-      null} 
+      <Information countries={countries} />
     </div>
   )
 }
