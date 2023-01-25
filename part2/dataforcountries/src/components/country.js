@@ -9,6 +9,7 @@ const Country = ({country}) => {
                 {Object.values(country.languages).map((language) => (<li key={language}>{language}</li>))}
             </ul>
             <img src={country.flags.png} alt={`${country.name.common} flag`}></img>
+            <h2>Weather in {country.capital}</h2>
         </div>
     )
 }
