@@ -6,7 +6,7 @@ const getAll = () => {
 }
 
 const create = newPerson => {
-    return axios.put(baseUrl, newPerson)
+    return axios.post(baseUrl, newPerson)
 }
 
 export default { getAll, create }

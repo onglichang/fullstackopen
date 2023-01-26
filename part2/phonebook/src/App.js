@@ -31,12 +31,11 @@ const App = () => {
 
     } else {
       const personObject = { name: newName, number: newNumber}
-      axios
-        .post('http://localhost:3001/persons', personObject)
+      personService
+        .create(personObject)
         .then(response => {
-          console.log(response)
+          setPersons(persons.concat(personObject))
         })
-      setPersons(persons.concat(personObject))
     }
     setNewName('')
     setNewNumber('')
