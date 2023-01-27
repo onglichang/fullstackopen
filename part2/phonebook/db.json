@@ -24,26 +24,6 @@
       "name": "John Poppendieck",
       "number": "13-23-6423122",
       "id": 5
-    },
-    {
-      "name": "Amazing Graze",
-      "number": "1234-44",
-      "id": 6
-    },
-    {
-      "name": "Johnny Boy",
-      "number": "1321-414",
-      "id": 7
-    },
-    {
-      "name": "Joe Burr",
-      "number": "999",
-      "id": 8
-    },
-    {
-      "name": "Hello World",
-      "number": "123",
-      "id": 9
     }
   ]
 }
