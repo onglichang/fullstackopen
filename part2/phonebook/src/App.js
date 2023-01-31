@@ -3,12 +3,14 @@ import Filter from './components/filter'
 import PersonForm from './components/personForm'
 import Persons from './components/persons'
 import personService from './services/persons'
+import Notification from './components/notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [actionMessage, setActionMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -24,6 +26,7 @@ const App = () => {
     : persons
 
   const addPerson = (event) => {
+    event.preventDefault()
     if (persons.find(person => person.name === newName) ) {
       if (window.confirm(`${newName} is already added to phonebook, 
       replace the old number with a new one?`)) {
@@ -32,6 +35,7 @@ const App = () => {
         personService
           .update(existingPerson.id, personObject)
           .then(response => {
+            setActionMessage(`${newName} number updated`)
             setPersons(persons.map(person => person.id !== existingPerson.id ? person : response.data))
           })
       }
@@ -41,11 +45,15 @@ const App = () => {
       personService
         .create(personObject)
         .then(response => {
+          setActionMessage(`Added ${newName}`)
           setPersons(persons.concat(personObject))
         })
     }
     setNewName('')
     setNewNumber('')
+    setTimeout(() => {
+      setActionMessage(null)
+    }, 5000)
   }
 
   const handleDelete = (event) => {
@@ -67,6 +75,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={actionMessage}/>
       <Filter filter={filter} eventHandler={handleFilterChange}/>
       <h2>add a new</h2>
       <PersonForm 
