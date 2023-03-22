@@ -1,0 +1,1 @@
+GET https://phonebook-fullstackopen-8hku.onrender.com/api/persons HTTP/1.1
